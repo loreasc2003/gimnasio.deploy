@@ -49,7 +49,7 @@ def create_user(user: schemas.users.UserCreate, db: Session=Depends(get_db)):
     return crud.users.create_user(db=db, user=user)
 
 # Ruta para actualizar un usuario
-@user.put('/users/{id}', response_model=schemas.users.User,tags=['Usuarios'])
+@user.put('/users/{id}', response_model=schemas.users.User,tags=['Usuarios'], dependencies=[Depends(Portador())])
 def update_user(id:int,user: schemas.users.UserUpdate, db: Session=Depends(get_db)):
     db_users = crud.users.update_user(db=db, id=id, user=user)
     if db_users is None:
@@ -57,7 +57,7 @@ def update_user(id:int,user: schemas.users.UserUpdate, db: Session=Depends(get_d
     return db_users
 
 # Ruta para eliminar un usuario
-@user.delete('/users/{id}', response_model=schemas.users.User,tags=['Usuarios'])
+@user.delete('/users/{id}', response_model=schemas.users.User,tags=['Usuarios'], dependencies=[Depends(Portador())])
 def delete_user(id:int, db: Session=Depends(get_db)):
     db_users = crud.users.delete_user(db=db, id=id)
     if db_users is None:
@@ -68,7 +68,7 @@ def delete_user(id:int, db: Session=Depends(get_db)):
 def read_credentials(usuario:schemas.users.UserLogin, db: Session = Depends(get_db)):
     db_credentials = crud.users.get_user_by_creentials(db, username=usuario.Nombre_Usuario,
                                                        correo=usuario.Correo_Electronico,
-                                                       telefono=usuario.Numero_Telefononico_Movil,
+                                                       telefono=usuario.Numero_Telefonico_Movil,
                                                        password=usuario.Contrasena)
     if db_credentials is None:
         return JSONResponse(content={'mensaje':'Acceso denegado'},status_code=404)
