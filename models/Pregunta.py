@@ -6,7 +6,7 @@ from datetime import datetime
 Base = declarative_base()
 
 class Pregunta(Base):
-    __tablename__ = 'tbc_preguntas'
+    __tablename__ = 'tbd_preguntas'
     
     id = Column(Integer, primary_key=True, index=True)
     pregunta = Column(String(255), nullable=False)
