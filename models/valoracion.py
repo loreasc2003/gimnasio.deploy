@@ -1,0 +1,1 @@
+file:///home/adalid/Escritorio/GimnasioUTXJ/Backend/models/valoracion.py
