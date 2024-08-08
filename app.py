@@ -20,6 +20,8 @@ from routes.transacciones import  transacciones
 from routes.sucursales import sucursales
 from routes.equipamiento import equipamiento
 from routes.adeudos import adeudo
+from routes.dietas import dieta
+from routes.indicadores_nutricionales import indicador_nutricional
 
 
 
@@ -46,3 +48,5 @@ app.include_router(transacciones)
 app.include_router(sucursales)
 app.include_router(equipamiento)
 app.include_router(adeudo)
+app.include_router(dieta)
+app.include_router(indicador_nutricional)
