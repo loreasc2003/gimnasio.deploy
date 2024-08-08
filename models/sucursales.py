@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Enum, Boolean
 from sqlalchemy.dialects.mysql import LONGTEXT
-from Config.db import Base
+from config.db import Base
 #import models.persons
 
 

@@ -1,7 +1,7 @@
 from sqlalchemy import Column,Integer,String,Boolean,DateTime,ForeignKey,Enum
 from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlalchemy.orm import relationship
-from Config.db import Base
+from config.db import Base
 import enum
 
 class MyDetalle(enum.Enum):

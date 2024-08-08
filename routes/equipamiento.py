@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from cryptography.fernet import Fernet
 import json
-import crud.equipamiento, Config.db, schemas.equipamiento, models.equipamiento
+import crud.equipamiento, config.db, schemas.equipamiento, models.equipamiento
 from typing import List
 from jwt_config import solicita_token 
 from portadortoken import Portador
@@ -12,10 +12,10 @@ key = Fernet.generate_key()
 f = Fernet(key)
 
 equipamiento = APIRouter()
-models.equipamiento.Base.metadata.create_all(bind=Config.db.engine)
+models.equipamiento.Base.metadata.create_all(bind=config.db.engine)
 
 def get_db():
-    db = Config.db.SessionLocal()
+    db = config.db.SessionLocal()
     try:
         yield db
     finally:

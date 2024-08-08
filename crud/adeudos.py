@@ -3,13 +3,13 @@ import schemas.adeudos
 from sqlalchemy.orm import Session
 
 def get_adeudo(db:Session, ID:int):
-    return db.query(models.adeudos.Adeudo).filter(models.adeudos.Adeudo.ID == ID).first()
+    return db.query(models.adeudos.adeudos).filter(models.adeudos.adeudos.ID == ID).first()
 
 def get_adeudo_by_nombre(db: Session, nombre: str):
-    return db.query(models.adeudos.Adeudo).filter(models.adeudos.Adeudo == nombre).first()
+    return db.query(models.adeudos.adeudos).filter(models.adeudos.adeudos == nombre).first()
 
 def get_adeudos(db: Session, skip:int=0,limit:int=10):
-    return db.query(models.adeudos.Adeudo).offset(skip).limit(limit).all()
+    return db.query(models.adeudos.adeudos).offset(skip).limit(limit).all()
 
 def create_adeudos(db: Session, adeudos:schemas.adeudos.AdeudoCreate):
     db_adeudo = models.adeudos.Adeudo(area=adeudos.area, cliente=adeudos.cliente, fecha_registro=person.Fecha_Registro, fecha_actualizacion=person.fecha_actualizacion, estatus=adeudos.estatus, tipo=adeudos.tipo, detalle=adeudos.detalle)
