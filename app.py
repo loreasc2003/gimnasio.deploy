@@ -22,7 +22,11 @@ from routes.equipamiento import equipamiento
 from routes.adeudos import adeudo
 from routes.dietas import dieta
 from routes.indicadores_nutricionales import indicador_nutricional
-
+from routes.schedule import schedule
+from routes.area import area
+from routes.puestos import puesto
+from routes.empleados import empleado
+from routes.servicios_clientes import servicio_cliente
 
 
 
@@ -50,3 +54,8 @@ app.include_router(equipamiento)
 app.include_router(adeudo)
 app.include_router(dieta)
 app.include_router(indicador_nutricional)
+app.include_router(schedule)
+app.include_router(area)
+app.include_router(puesto)
+app.include_router(empleado)
+app.include_router(servicio_cliente)
