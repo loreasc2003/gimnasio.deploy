@@ -23,6 +23,7 @@ from routes.adeudos import adeudo
 
 
 
+
 app = FastAPI()
 app.include_router(user)
 app.include_router(person)
