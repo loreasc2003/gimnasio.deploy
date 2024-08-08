@@ -23,9 +23,9 @@ def create_schedule(db:Session, schedule: schemas.schedules.ScheduleCreate):
                                       Fecha_Fin=schedule.Fecha_Fin, 
                                       Fecha_Registro=schedule.Fecha_Registro, 
                                       Estatus=schedule.Estatus,
-                                      Empleado=schedule.Empleado,
-                                      Sucursal=schedule.Sucursal,
-                                      Servicio=schedule.Servicio)
+                                      Empleado_ID=schedule.Empleado_ID,
+                                      Sucursal_ID=schedule.Sucursal_ID,
+                                      Servicio_ID=schedule.Servicio_ID)
     db.add(db_schedule)
     db.commit()
     db.refresh(db_schedule)
