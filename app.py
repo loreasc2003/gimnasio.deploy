@@ -17,7 +17,9 @@ from routes.productos import producto
 from routes.membresias import membresia
 from routes.miembros import miembros
 from routes.transacciones import  transacciones
-
+from routes.sucursales import sucursales
+from routes.equipamiento import equipamiento
+from routes.adeudos import adeudo
 
 
 
@@ -40,3 +42,6 @@ app.include_router(producto)
 app.include_router(membresia)
 app.include_router(miembros)
 app.include_router(transacciones)
+app.include_router(sucursales)
+app.include_router(equipamiento)
+app.include_router(adeudo)
