@@ -27,7 +27,7 @@ def read_puesto(ID: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Puesto not found")
     return db_puestos
 
-@puesto.post("/puestos/", response_model=schemas.puestos.Puesto, tags=["Puestos"])
+@puesto.post("/puestos/", response_model=schemas.puestos.Puesto, tags=["Puestos"],dependencies=[Depends(Portador())])
 def create_puesto(puesto: schemas.puestos.PuestoCreate, db: Session = Depends(get_db)):
     db_puesto = crud.puestos.get_puesto_by_Nombre(db, Nombre=puesto.Nombre)
     if db_puesto:
