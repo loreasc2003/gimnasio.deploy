@@ -4,7 +4,7 @@ from datetime import datetime, date
 import enum
 
 
-class indicador_nutricionalBase(BaseModel):
+class IndicadoresNutricionalesBase(BaseModel):
     Nombre: str
     Edad: int
     Genero: str
@@ -12,16 +12,16 @@ class indicador_nutricionalBase(BaseModel):
     Peso: float
     Imc: float
     Porcentaje_grasa: float
-    Nivel_actividad: enum
+    NivelActividad: str
 
 
-class indicadores_nutricionalesCreate(indicador_nutricionalBase):
+class IndicadoresNutricionalesCreate(IndicadoresNutricionalesBase):
     pass
 
-class indicadores_nutricionalesUpdate(indicador_nutricionalBase):
+class IndicadoresNutricionalesUpdate(IndicadoresNutricionalesBase):
     pass
 
-class indicadores_nutricionales(indicador_nutricionalBase):
+class indicador_nutricional(IndicadoresNutricionalesBase):
     ID: int
     #owner_id: int clave foranea
     class Config:

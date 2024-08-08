@@ -6,17 +6,24 @@ class MyGenero(str,enum.Enum):
     Masculino = "Masculino"
     Femenino = "Femenino"
 
+class MyNivelActividad(str,enum.Enum):
+    Sedentario= "Sedentario"
+    Ligero= "Ligero"
+    Moderado= "Moderado"
+    Activo= "Activo"
+    MuyActivo= "Muy Activo"
+
    
 
-class Actividad(Base):
-    __tablename__ = "tbb_personas"
+class IndicadoresNutricionales(Base):
+    __tablename__ = "tbb_indicadores_nutricionales"
 
     ID= Column(Integer, primary_key=True, index=True)
     Nombre = Column(String(80))
-    Edad = Column(Integer(10))
+    Edad = Column(Integer)
     Genero = Column( Enum(MyGenero))
     Altura = Column( Float(5,2))
     Peso = Column( Float(5,2))
     Imc = Column(Float())
     Porcentaje_grasa = Column(Float())
-    Nivel_actividad= Column(Enum('Sedentario','Ligero','Moderado','Activo','Muy Activo'))
+    NivelActividad= Column(Enum(MyNivelActividad))
