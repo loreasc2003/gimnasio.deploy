@@ -8,11 +8,11 @@ def get_equipamiento(db:Session, id: int):
     return db.query(models.equipamiento.Equipamiento).filter(models.equipamiento.Equipamiento.Id == id).first()
 
 # Busqueda por USUARIO
-def get_equipamiento_by_equipamiento(db:Session, area : str):
-    return db.query(models.equipamiento.Equipamiento).filter(models.equipamiento.Equipamiento.Area == area).first()
+def get_equipamiento_by_equipamiento(db:Session, equipamiento : str):
+    return db.query(models.equipamiento.Equipamiento).filter(models.equipamiento.Equipamiento.Area == equipamiento).first()
 
 # Buscar todos los usuarios
-def get_equipamiento(db:Session, skip: int=0, limit:int=10):
+def get_equipamientos(db:Session, skip: int=0, limit:int=10):
     return db.query(models.equipamiento.Equipamiento).offset(skip).limit(limit).all()
 
 # Crear nuevo usuario
@@ -36,17 +36,17 @@ def create_equipamiento(db:Session, equipamiento: schemas.equipamiento.Equipamie
     return db_equipamiento
 
 # Actualizar un usuario por id
-def update_sucursal(db:Session, id:int, sucursal:schemas.equipamiento.EquipamientoUpdate):
+def update_equipamiento(db:Session, id:int, equipamiento:schemas.equipamiento.EquipamientoUpdate):
     db_equipamiento = db.query(models.equipamiento.Equipamiento).filter(models.equipamiento.Equipamiento.Id == id).first()
     if db_equipamiento:
-        for var, value in vars(sucursal).items():
+        for var, value in vars(equipamiento).items():
             setattr(db_equipamiento, var, value) if value else None
         db.commit()
         db.refresh(db_equipamiento)
     return db_equipamiento
 
 # Eliminar un usuario por id
-def delete_sucursal(db:Session, id:int):
+def delete_equipamiento(db:Session, id:int):
     db_equipamiento = db.query(models.equipamiento.Equipamiento).filter(models.equipamiento.Equipamiento.Id == id).first()
     if db_equipamiento:
         db.delete(db_equipamiento)

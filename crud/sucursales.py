@@ -6,13 +6,15 @@ import models, schemas
 # Busqueda por id
 def get_sucursal(db:Session, id: int):
     return db.query(models.sucursales.Sucursal).filter(models.sucursales.Sucursal.Id == id).first()
+# def get_person(db: Session, id: int):
+#     return db.query(models.persons.Person).filter(models.persons.Person.Id == id).first()
 
 # Busqueda por USUARIO
 def get_sucursal_by_sucursal(db:Session, sucursal: str):
     return db.query(models.sucursales.Sucursal).filter(models.sucursales.Sucursal.Nombre == sucursal).first()
 
 # Buscar todos los usuarios
-def get_sucursal(db:Session, skip: int=0, limit:int=10):
+def get_sucursales(db:Session, skip: int=0, limit:int=10):
     return db.query(models.sucursales.Sucursal).offset(skip).limit(limit).all()
 
 # Crear nuevo usuario
