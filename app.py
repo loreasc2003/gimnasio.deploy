@@ -14,9 +14,7 @@ from routes.promociones import promocion
 from routes.Pregunta import pregunta_router
 from routes.OpinionCliente import opinion_router
 from routes.productos import producto
-from routes.sucursales import sucursales
-from routes.equipamiento import equipamiento
-from routes.adeudos import adeudo
+
 
 
 app = FastAPI()
@@ -35,6 +33,3 @@ app.include_router(promocion)
 app.include_router(pregunta_router)
 app.include_router(opinion_router)
 app.include_router(producto)
-app.include_router(sucursales)
-app.include_router(equipamiento)
-app.include_router(adeudo)
