@@ -29,7 +29,7 @@ def read_empleado(ID: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Empleado not found")
     return db_empleados
 
-@empleado.post("/empleados/", response_model=schemas.empleados.Empleado, tags=["Empleados"])
+@empleado.post("/empleados/", response_model=schemas.empleados.Empleado, tags=["Empleados"],dependencies=[Depends(Portador())])
 def create_empleado(empleado: schemas.empleados.EmpleadoCreate, db: Session = Depends(get_db)):
     db_empleados = crud.empleados.get_empleado_by_Numero(db, Numero_Empleado=empleado.Numero_Empleado)
     if db_empleados:
@@ -39,7 +39,7 @@ def create_empleado(empleado: schemas.empleados.EmpleadoCreate, db: Session = De
 
 @empleado.put("/empleado/{ID}", response_model=schemas.empleados.Empleado, tags=["Empleados"] ,dependencies=[Depends(Portador())])
 def update_empleado(ID: int, empleado: schemas.empleados.EmpleadoUpdate, db: Session = Depends(get_db)):
-    db_empleados = crud.puestos.update_puesto(db = db, ID = ID, puesto = puesto)
+    db_empleados = crud.puestos.update_puesto(db = db, ID = ID, empleado = empleado)
     if db_empleados is None:
         raise HTTPException(status_code=404, detail="Empleado no existente, no esta actuaizado")
     return db_empleados

@@ -13,9 +13,9 @@ class Schedule(Base):
     Fecha_Fin = Column(DateTime)
     Fecha_Registro = Column(DateTime)
     Estatus = Column(Boolean, default=False)
-    Empleado= Column(String(80))
-    Sucursal = Column(String(80))
-    Servicio = Column(String(80))
+    Empleado_ID= Column(Integer, ForeignKey("tbb_empleados.ID"))
+    Sucursal_ID = Column(Integer, ForeignKey("tbc_sucursales.ID"))
+    Servicio_ID = Column(Integer, ForeignKey("tbc_servicios_clientes.ID"))
 
     # Id_persona = Column(Integer)
     # intems = relationship("Item", back_populates="owner") Clave foranea
