@@ -10,7 +10,7 @@ class SucursalBase(BaseModel):
     Promedio_Clientes_X_Dia : int
     Capacidad_Maxima : int
     Total_Empleados : int
-    Horario_Disponibilidad : int
+    Horario_Disponibilidad : str
     Estatus : bool
     Fecha_Registro :datetime
     Fecha_Actualizacion :datetime
@@ -23,7 +23,7 @@ class SucursalUpdate(SucursalBase):
 
 class Sucursal(SucursalBase):
     Id:int
-    Responsablee_Id:int
+    #Responsablee_Id:int
     
     class Config:
         orm_mode = True

@@ -35,7 +35,7 @@ def read_sucursales(skip: int=0, limit: int=10, db: Session=Depends(get_db)):
 # Ruta para obtener un usuario por ID
 @sucursales.post("/sucursales/{id}", response_model=schemas.sucursales.Sucursal, tags=["Sucursal"], dependencies=[Depends(Portador())])
 def read_sucursal(id: int, db: Session = Depends(get_db)):
-    db_sucursales= crud.sucursales.get_sucursales(db=db, id=id)
+    db_sucursales= crud.sucursales.get_sucursal(db=db, id=id)
     if db_sucursales is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_sucursales
@@ -43,7 +43,7 @@ def read_sucursal(id: int, db: Session = Depends(get_db)):
 # Ruta para crear un usurio
 @sucursales.post('/sucursales/', response_model=schemas.sucursales.Sucursal,tags=['Sucursal'], dependencies=[Depends(Portador())])
 def create_sucursal(sucursal: schemas.sucursales.SucursalCreate, db: Session=Depends(get_db)):
-    db_sucursales = crud.sucursales.get_sucursales_by_sucursales(db,sucursal=sucursal.Nombre)
+    db_sucursales = crud.sucursales.get_sucursal_by_sucursal(db,sucursal=sucursal.Nombre)
     if db_sucursales:
         raise HTTPException(status_code=400, detail="Usuario existente intenta nuevamente")
     return crud.sucursales.create_sucursal(db=db, sucursal=sucursal)
@@ -51,7 +51,7 @@ def create_sucursal(sucursal: schemas.sucursales.SucursalCreate, db: Session=Dep
 # Ruta para actualizar un usuario
 @sucursales.put('/sucursales/{id}', response_model=schemas.sucursales.Sucursal,tags=['Sucursal'], dependencies=[Depends(Portador())])
 def update_sucursal(id:int,sucursal: schemas.sucursales.SucursalUpdate, db: Session=Depends(get_db)):
-    db_sucursal = crud.users.update_user(db=db, id=id, sucursal=sucursal)
+    db_sucursal = crud.sucursales.update_sucursal(db=db, id=id, sucursal=sucursal)
     if db_sucursal is None:
         raise HTTPException(status_code=404, detail="Usuario no existe, no se pudo actualizar ")
     return db_sucursal

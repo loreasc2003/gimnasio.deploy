@@ -1,12 +1,18 @@
-from fastapi import APIRouter,HTTPException,Depends,Request
+from fastapi import APIRouter,HTTPException, Depends
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
-from portadortoken import Portador
-import crud.adeudos,config.db, schemas.adeudos,models.adeudos
+from cryptography.fernet import Fernet
+import json
+import crud.sucursales, config.db, schemas.sucursales, models.sucursales
 from typing import List
+from jwt_config import solicita_token 
+from portadortoken import Portador
 
-adeudo = APIRouter()
+key = Fernet.generate_key()
+f = Fernet(key)
 
-models.adeudos.Base.metadata.create_all(bind=config.db.engine)
+sucursales = APIRouter()
+models.sucursales.Base.metadata.create_all(bind=config.db.engine)
 
 def get_db():
     db = config.db.SessionLocal()
@@ -15,35 +21,45 @@ def get_db():
     finally:
         db.close()
         
-@adeudo.get("/adeudos/", response_model=List[schemas.adeudos.Adeudo], tags=["Adeudos"] ,dependencies=[Depends(Portador())])
-def read_adeudos(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    db_adeudos= crud.adeudos.get_adeudos(db=db, skip=skip, limit=limit)
-    return db_adeudos
+# Ruta de bienvenida
+@sucursales.get('/')
+def bienvenido():
+    return 'Bienvenido al sistema de APIs'
 
-@adeudo.post("/adeudo/{ID}", response_model=schemas.adeudos.Adeudo, tags=["Adeudos"] ,dependencies=[Depends(Portador())])
-def read_adeudo(ID: int, db: Session = Depends(get_db)):
-    db_adeudo= crud.adeudos.get_adeudo(db=db, ID=ID)
-    if db_adeudo is None:
-        raise HTTPException(status_code=404, detail="adeudo not found")
-    return db_adeudo
+# Ruta para obtener todos los usuarios
+@sucursales.get('/sucursales/', response_model=List[schemas.sucursales.Sucursal],tags=['Sucursal'], dependencies=[Depends(Portador())])
+def read_sucursales(skip: int=0, limit: int=10, db: Session=Depends(get_db)):
+    db_sucursales = crud.sucursales.get_sucursales(db=db,skip=skip, limit=limit)
+    return db_sucursales
 
-@adeudo.post("/adeudos/", response_model=schemas.adeudos.Adeudo, tags=["Adeudos"])
-def create_adeudo(adeudo: schemas.adeudos.AdeudoCreate, db: Session = Depends(get_db)):
-    db_adeudo = crud.adeudos.get_adeudo_by_Nombre(db, Nombre=adeudo.Nombre)
-    if db_adeudo:
-        raise HTTPException(status_code=400, detail="adeudo existente intenta nuevamente")
-    return crud.adeudos.create_adeudo(db=db, adeudo=adeudo)
+# Ruta para obtener un usuario por ID
+@sucursales.post("/sucursales/{id}", response_model=schemas.sucursales.Sucursal, tags=["Sucursal"], dependencies=[Depends(Portador())])
+def read_sucursal(id: int, db: Session = Depends(get_db)):
+    db_sucursales= crud.sucursales.get_sucursal(db=db, id=id)
+    if db_sucursales is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_sucursales
 
-@adeudo.put("/adeudo/{ID}", response_model=schemas.adeudos.Adeudo, tags=["Adeudos"] ,dependencies=[Depends(Portador())])
-def update_adeudo(ID: int, adeudo: schemas.adeudos.AdeudoUpdate, db: Session = Depends(get_db)):
-    db_adeudo = crud.adeudos.update_adeudo(db = db, ID = ID, adeudo = adeudo)
-    if db_adeudo is None:
-        raise HTTPException(status_code=404, detail="adeudo no existente, no esta actuaizado")
-    return db_adeudo
+# Ruta para crear un usurio
+@sucursales.post('/sucursales/', response_model=schemas.sucursales.Sucursal,tags=['Sucursal'], dependencies=[Depends(Portador())])
+def create_sucursal(sucursal: schemas.sucursales.SucursalCreate, db: Session=Depends(get_db)):
+    db_sucursales = crud.sucursales.get_sucursal_by_sucursal(db,sucursal=sucursal.Nombre)
+    if db_sucursales:
+        raise HTTPException(status_code=400, detail="Usuario existente intenta nuevamente")
+    return crud.sucursales.create_sucursal(db=db, sucursal=sucursal)
 
-@adeudo.delete("/adeudo/{ID}", response_model=schemas.adeudos.Adeudo, tags=["Adeudos"] ,dependencies=[Depends(Portador())])
-def delete_adeudo(ID: int, db: Session = Depends(get_db)):
-    db_adeudo = crud.adeudos.delete_adeudo(db = db, ID = ID)
-    if db_adeudo is None:
-        raise HTTPException(status_code=404, detail="adeudo no existe, no se pudo eliminar")
-    return db_adeudo
+# Ruta para actualizar un usuario
+@sucursales.put('/sucursales/{id}', response_model=schemas.sucursales.Sucursal,tags=['Sucursal'], dependencies=[Depends(Portador())])
+def update_sucursal(id:int,sucursal: schemas.sucursales.SucursalUpdate, db: Session=Depends(get_db)):
+    db_sucursal = crud.sucursales.update_sucursal(db=db, id=id, sucursal=sucursal)
+    if db_sucursal is None:
+        raise HTTPException(status_code=404, detail="Usuario no existe, no se pudo actualizar ")
+    return db_sucursal
+
+# Ruta para eliminar un usuario
+@sucursales.delete('/sucursal/{id}', response_model=schemas.sucursales.Sucursal,tags=['Sucursal'], dependencies=[Depends(Portador())])
+def delete_sucursal(id:int, db: Session=Depends(get_db)):
+    db_sucursal = crud.sucursales.delete_sucursal(db=db, id=id)
+    if db_sucursal is None:
+        raise HTTPException(status_code=404, detail="Sucursal no existe, no se pudo eliminar ")
+    return db_sucursal

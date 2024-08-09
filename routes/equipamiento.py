@@ -29,7 +29,7 @@ def bienvenido():
 # Ruta para obtener todos los usuarios
 @equipamiento.get('/equipamiento/', response_model=List[schemas.equipamiento.Equipamiento],tags=['Equipamiento'], dependencies=[Depends(Portador())])
 def read_equipamiento(skip: int=0, limit: int=10, db: Session=Depends(get_db)):
-    db_equipamiento = crud.equipamiento.get_equipamiento(db=db,skip=skip, limit=limit)
+    db_equipamiento = crud.equipamiento.get_equipamientos(db=db,skip=skip, limit=limit)
     return db_equipamiento
 
 # Ruta para obtener un usuario por ID
@@ -43,7 +43,7 @@ def read_equipamiento(id: int, db: Session = Depends(get_db)):
 # Ruta para crear un usurio
 @equipamiento.post('/equipamiento/', response_model=schemas.equipamiento.Equipamiento,tags=['Equipamiento'], dependencies=[Depends(Portador())])
 def create_equipamiento(equipamiento: schemas.equipamiento.EquipamientoCreate, db: Session=Depends(get_db)):
-    db_equipamiento = crud.equipamiento.get_equipamiento_by_equipamientos(db,equipamiento=equipamiento.Area)
+    db_equipamiento = crud.equipamiento.get_equipamiento_by_equipamiento(db,equipamiento=equipamiento.Area)
     if db_equipamiento:
         raise HTTPException(status_code=400, detail="Usuario existente intenta nuevamente")
     return crud.equipamiento.create_equipamiento(db=db, equipamiento=equipamiento)
@@ -51,7 +51,7 @@ def create_equipamiento(equipamiento: schemas.equipamiento.EquipamientoCreate, d
 # Ruta para actualizar un usuario
 @equipamiento.put('/equipamiento/{id}', response_model=schemas.equipamiento.Equipamiento,tags=['Equipamiento'], dependencies=[Depends(Portador())])
 def update_equipamiento(id:int,equipamiento: schemas.equipamiento.EquipamientoUpdate, db: Session=Depends(get_db)):
-    db_equipamiento = crud.equipamiento.update_user(db=db, id=id, equipamiento=equipamiento)
+    db_equipamiento = crud.equipamiento.update_equipamiento(db=db, id=id, equipamiento=equipamiento)
     if db_equipamiento is None:
         raise HTTPException(status_code=404, detail="Usuario no existe, no se pudo actualizar ")
     return db_equipamiento
