@@ -20,7 +20,7 @@ def read_ejercicios(skip: int = 0, limit: int = 10, db: Session = Depends(get_db
     db_ejercicios = crud.ejercicios.get_ejercicios(db=db, skip=skip, limit=limit)
     return db_ejercicios
 
-@ejercicio.post("/ejercicio/{ID}", response_model=schemas.ejercicios.Ejercicio, tags=["Ejercicios"])
+@ejercicio.post("/ejercicio/{ID}", response_model=schemas.ejercicios.Ejercicio, tags=["Ejercicios"] )
 def read_ejercicio(ID: int, db: Session = Depends(get_db)):
     db_ejercicio = crud.ejercicios.get_ejercicio(db=db, ID=ID)
     if db_ejercicio is None:
@@ -29,7 +29,7 @@ def read_ejercicio(ID: int, db: Session = Depends(get_db)):
 
 @ejercicio.post("/ejercicios/", response_model=schemas.ejercicios.Ejercicio, tags=["Ejercicios"])
 def create_ejercicio(ejercicio: schemas.ejercicios.EjercicioCreate, db: Session = Depends(get_db)):
-    db_ejercicio = crud.ejercicios.get_ejercicio_by_nombre(db, Nombre=ejercicio.Nombre)
+    db_ejercicio = crud.ejercicios.get_ejercicio_by_nombre(db, nombre=ejercicio.Nombre)
     if db_ejercicio:
         raise HTTPException(status_code=400, detail="Ejercicio existente, intenta nuevamente")
     return crud.ejercicios.create_ejercicio(db=db, ejercicio=ejercicio)

@@ -12,10 +12,10 @@ class EjercicioBase(BaseModel):
     Tipo: MyTipo
     Estatus:bool
     Dificultad: MyDificultad
-    Recomendaciones: str
-    Restricciones: str
     Fecha_Registro:datetime
     Fecha_Actualizacion:datetime
+    Recomendaciones: str
+    Restricciones: str
 
     
     

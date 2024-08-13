@@ -25,9 +25,9 @@ class Ejercicio(Base):
     Tipo= Column(Enum(MyTipo)) 
     Estatus = Column(Boolean, default=False)
     Dificultad= Column(Enum(MyDificultad)) 
-    Recomendaciones = Column(String(255)) 
-    Restricciones = Column(String(255)) 
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)
+    Recomendaciones = Column(String(255)) 
+    Restricciones = Column(String(255)) 
 
     
