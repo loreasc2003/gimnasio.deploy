@@ -4,8 +4,11 @@
 # https://gimnasio-deploy.onrender.com
 
 # No funciona promociones
-# Roles si funciona
-# usuarios roles funciona
+### Personas si funciona
+### Roles si funciona
+### Login si funciona
+### Roles si funciona
+### usuarios roles funciona
 # rutinas no funciona
 # ejercicios rutinas pendiente put
 ### Programas saludables si funciona
