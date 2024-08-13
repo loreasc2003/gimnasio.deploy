@@ -13,7 +13,7 @@ class MyCalificacion(enum.Enum):
 class Instalacion(Base):
     __tablename__ = 'tbb_instalaciones'
     Id = Column(Integer, primary_key=True, index=True)
-    Sucursal_Id = Column(Integer, ForeignKey("tbc_sucursales.Id"))
+    Sucursal_Id = Column(Integer)
     Descripcion = Column(LONGTEXT)
     Tipo = Column(String(50))
     Calificacion = Column(Enum(MyCalificacion))

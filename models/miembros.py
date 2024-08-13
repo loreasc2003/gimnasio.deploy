@@ -21,8 +21,8 @@ class Miembro(Base):
     __tablename__ = "tbb_miembros"
 
     ID= Column(Integer, primary_key=True, index=True)
-    Membresia_ID = Column(Integer, ForeignKey("tbc_membresias.ID"))
-    Usuario_ID = Column(Integer, ForeignKey("tbb_usuarios.ID"))
+    Membresia_ID = Column(Integer)
+    Usuario_ID = Column(Integer)
     Tipo = Column( Enum(MyTipo)) 
     Estatus = Column(Boolean, default=False)
     Antiguedad = Column(String(80))

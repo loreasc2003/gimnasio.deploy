@@ -1,9 +1,16 @@
 from fastapi import FastAPI
-from routes.user import user
+# TABLAS SIN RELACIÓN 
 from routes.person import person
 from routes.rol import rol
+
+
+# TABLAS CON RELACIÓN 
+from routes.user import user
 from routes.usersrols import userrol
+
+
 from routes.rutinas import rutina
+
 from routes.ejercicios_rutinas import ejcrtn
 from routes.progra_salud import progra_salud
 from routes.instructors import instructor
@@ -30,10 +37,15 @@ from routes.servicios_clientes import servicio_cliente
 from routes.instalacion import instalacion
 from routes.mantenimiento import mantenimiento
 from routes.p_nutricional import p_nutricional
+from routes.valoracion import valoracion
+
 
 
 
 app = FastAPI()
+# TABLAS SIN RELACIÓN 
+
+# TABLAS CON RELACIÓN 
 app.include_router(user)
 app.include_router(person)
 app.include_router(rol)
@@ -65,3 +77,4 @@ app.include_router(servicio_cliente)
 app.include_router(instalacion)
 app.include_router(mantenimiento)
 app.include_router(p_nutricional)
+app.include_router(valoracion)

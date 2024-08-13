@@ -8,10 +8,10 @@ class Empleado(Base):
     __tablename__ = "tbb_empleados"
     
     ID = Column(Integer, primary_key=True, index=True)
-    Area_ID = Column(Integer, ForeignKey("tbb_areas.ID"))
+    Area_ID = Column(Integer)
     Fecha_Contratacion = Column(DateTime)
-    Puesto_ID = Column(Integer, ForeignKey("tbc_puestos.ID"))
-    Persona_ID = Column(Integer, ForeignKey("tbb_personas.ID"))
+    Puesto_ID = Column(Integer)
+    Persona_ID = Column(Integer)
     Numero_Empleado = Column(String(45))
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)

@@ -6,7 +6,7 @@ from typing import List
 import json
 from fastapi.responses import JSONResponse
 from jwt_config import solicita_token
-from portadortoken import Portador
+from portaortoken import Portador
 
 key = Fernet.generate_key()
 f = Fernet(key)

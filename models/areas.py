@@ -9,7 +9,7 @@ class Area(Base):
     ID = Column(Integer, primary_key=True, index=True)
     Nombre = Column(String(80))
     Descripcion = Column(String(80))
-    Sucursal_ID = Column(Integer, ForeignKey("tbc_sucursales.ID"))
+    Sucursal_ID = Column(Integer)
     Estatus = Column(Boolean, default=False)
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)

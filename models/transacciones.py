@@ -19,7 +19,7 @@ class Transaccion(Base):
     __tablename__ = "tbb_transacciones"
 
     ID= Column(Integer, primary_key=True, index=True)
-    Usuario_ID = Column(Integer, ForeignKey("tbb_usuarios.ID"))
+    Usuario_ID = Column(Integer)
     Metodo_Pago = Column( Enum(MyMetodoPago)) 
     Numero_Tarjeta = Column(String(16))
     CVC = Column(Integer)
