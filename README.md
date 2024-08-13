@@ -8,9 +8,9 @@
 # usuarios roles funciona
 # rutinas no funciona
 # ejercicios rutinas pendiente put
-# programas saludables si funciona
-# instructor si unciona
-# ejercicios si funciona revisar put
+Programas saludables si funciona
+Instructor si funciona
+Ejercicios si funciona
 # evaluación falta crear evaluacion
 # pedidos no funciona
 # preguntas si funciones
@@ -22,7 +22,7 @@
 # Equipamiento funciona
 # Adeudo pendiente
 # Dieta si funciona
-#Indicadoes nutricionales no funciona
+# Indicadoes nutricionales no funciona
 # horarios no funciona
 # Puesto funciona bien
 # 
