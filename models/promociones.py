@@ -16,7 +16,7 @@ class MyAplicacion(enum.Enum):
 class Promocion(Base):
     __tablename__ = 'tbb_promociones'
     ID = Column(Integer, primary_key=True, index=True)
-    Producto_id = Column(Integer, ForeignKey("tbb_productos.ID"))
+    #Producto_id = Column(Integer, ForeignKey("tbb_productos.ID"))
     Tipo = Column(Enum(MyTipo))
     Aplicacion_en = Column(Enum(MyAplicacion))
     Fecha_Registro = Column(DateTime)

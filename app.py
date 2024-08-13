@@ -18,17 +18,18 @@ from routes.membresias import membresia
 from routes.miembros import miembros
 from routes.transacciones import  transacciones
 from routes.sucursales import sucursales
+from routes.schedule import schedule
 from routes.equipamiento import equipamiento
 from routes.adeudos import adeudo
 from routes.dietas import dieta
 from routes.indicadores_nutricionales import indicador_nutricional
-from routes.schedule import schedule
 from routes.area import area
 from routes.puestos import puesto
 from routes.empleados import empleado
 from routes.servicios_clientes import servicio_cliente
 from routes.instalacion import instalacion
 from routes.mantenimiento import mantenimiento
+from routes.p_nutricional import p_nutricional
 
 
 
@@ -63,3 +64,4 @@ app.include_router(empleado)
 app.include_router(servicio_cliente)
 app.include_router(instalacion)
 app.include_router(mantenimiento)
+app.include_router(p_nutricional)

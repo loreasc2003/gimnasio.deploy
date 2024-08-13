@@ -14,7 +14,7 @@ class Schedule(Base):
     Fecha_Registro = Column(DateTime)
     Estatus = Column(Boolean, default=False)
     Empleado_ID= Column(Integer, ForeignKey("tbb_empleados.ID"))
-    Sucursal_ID = Column(Integer, ForeignKey("tbc_sucursales.ID"))
+    Sucursal_ID = Column(Integer, ForeignKey("tbc_sucursales.Id"))
     Servicio_ID = Column(Integer, ForeignKey("tbc_servicios_clientes.ID"))
 
     # Id_persona = Column(Integer)
