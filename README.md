@@ -21,9 +21,9 @@
 # membresias si funciona falta put
 # miembros pendientes sin seguridad no put
 # tranasacciones falta el put y no tiene seguridad
-### Sucursales funciona
-### Equipamiento funciona
-# Adeudo pendiente
+### Sucursales si funciona
+### Equipamiento si funciona
+### Adeudo si funciona
 # Dieta si funciona
 # Indicadoes nutricionales no funciona
 # horarios no funciona
@@ -31,5 +31,5 @@
 # 
 # Empleados si funciona falta put o update
 # Servicio al cliente no fucniona get
-# Instalacion no funciona
-### Mantenimiento funciona
+### Instalacion si funciona
+### Mantenimiento si funciona
