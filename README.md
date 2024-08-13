@@ -29,7 +29,7 @@
 # horarios no funciona
 # Puesto funciona bien
 # 
-#Empleados si funciona falta put o update
-#Servicio al cliente no fucniona get
+# Empleados si funciona falta put o update
+# Servicio al cliente no fucniona get
 # Instalacion no funciona
 #Mantenimiento funciona
