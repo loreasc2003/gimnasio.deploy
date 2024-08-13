@@ -27,6 +27,8 @@ from routes.area import area
 from routes.puestos import puesto
 from routes.empleados import empleado
 from routes.servicios_clientes import servicio_cliente
+from routes.instalacion import instalacion
+from routes.mantenimiento import mantenimiento
 
 
 
@@ -59,3 +61,5 @@ app.include_router(area)
 app.include_router(puesto)
 app.include_router(empleado)
 app.include_router(servicio_cliente)
+app.include_router(instalacion)
+app.include_router(mantenimiento)
