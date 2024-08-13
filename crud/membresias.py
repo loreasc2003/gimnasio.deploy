@@ -29,10 +29,10 @@ def create_membresias(db: Session, nom: schemas.membresias.MembresiaCreate):
     db.refresh(db_user)
     return db_user
 
-def update_membresias(db: Session, id: int, person: schemas.membresias.MembresiaUpdate):
+def update_membresias(db: Session, id: int, membre: schemas.membresias.MembresiaUpdate):
     db_user = db.query(models.membresias.Membresia).filter(models.membresias.Membresia.ID == id).first()
     if db_user:
-        for var, value in vars(person).items():
+        for var, value in vars(membre).items():
             setattr(db_user, var, value) if value else None
         db.commit()
         db.refresh(db_user)

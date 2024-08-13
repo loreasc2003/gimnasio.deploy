@@ -26,10 +26,10 @@ def create_miembros(db: Session, nom: schemas.miembros.MiembroCreate):
     db.refresh(db_user)
     return db_user
 
-def update_miembros(db: Session, id: int, person: schemas.miembros.MiembroUpdate):
+def update_miembros(db: Session, id: int, miem: schemas.miembros.MiembroUpdate):
     db_user = db.query(models.miembros.Miembro).filter(models.miembros.Miembro.ID == id).first()
     if db_user:
-        for var, value in vars(person).items():
+        for var, value in vars(miem).items():
             setattr(db_user, var, value) if value else None
         db.commit()
         db.refresh(db_user)
