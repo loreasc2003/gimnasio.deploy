@@ -36,7 +36,7 @@ def read_producto(id: int, db: Session = Depends(get_db)):
 # Ruta para crear un usurio
 @producto.post('/productos/', response_model=schemas.productos.Producto,tags=['productos'], dependencies=[Depends(Portador())])
 def create_producto(producto: schemas.productos.ProductoCreate, db: Session=Depends(get_db)):
-    db_productos = crud.productos.get_producto_by_nombre(db,nombre=producto.Nombre)
+    db_productos = crud.productos.get_producto_by_cod_barras(db,cod_barras=producto.Cod_barras)
     if db_productos:
         raise HTTPException(status_code=400, detail="producto existente intenta nuevamente")
     return crud.productos.create_producto(db=db, producto=producto)
@@ -44,7 +44,7 @@ def create_producto(producto: schemas.productos.ProductoCreate, db: Session=Depe
 # Ruta para actualizar un producto
 @producto.put('/productos/{id}', response_model=schemas.productos.Producto,tags=['productos'], dependencies=[Depends(Portador())])
 def update_Producto(id:int,producto: schemas.productos.ProductoUpdate, db: Session=Depends(get_db)):
-    db_productos = crud.productos.update_Producto(db=db, id=id, producto=producto)
+    db_productos = crud.productos.update_producto(db=db, id=id, producto=producto)
     if db_productos is None:
         raise HTTPException(status_code=404, detail="producto no existe, no se pudo actualizar ")
     return db_productos
