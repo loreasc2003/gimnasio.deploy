@@ -34,7 +34,7 @@ def read_miembro(id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Person not found")
     return db_user
 
-@miembros.post("/miembro/", response_model=schemas.miembros.Miembro, tags=["Miembros"])
+@miembros.post("/miembro/", response_model=schemas.miembros.Miembro, tags=["Miembros"],dependencies=[Depends(Portador())])
 def create_miembro(miembro: schemas.miembros.MiembroCreate, db: Session = Depends(get_db)):
     db_user = crud.miembros.get_miembro_by_id(db, tipo=miembro.Tipo)
     if db_user:

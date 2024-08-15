@@ -33,7 +33,7 @@ def read_membresia(id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Person not found")
     return db_user
 
-@membresia.post("/membresia/", response_model=schemas.membresias.Membresia, tags=["Membresias"])
+@membresia.post("/membresia/", response_model=schemas.membresias.Membresia, tags=["Membresias"],dependencies=[Depends(Portador())])
 def create_membresia(membresia: schemas.membresias.MembresiaCreate, db: Session = Depends(get_db)):
     db_user = crud.membresias.get_membresia_by_id(db, codigo=membresia.Codigo)
     if db_user:

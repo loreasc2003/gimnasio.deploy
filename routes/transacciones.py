@@ -33,7 +33,7 @@ def read_transaccion(id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Person not found")
     return db_user
 
-@transacciones.post("/transaccion/", response_model=schemas.transacciones.Transaccion, tags=["Transacciones"])
+@transacciones.post("/transaccion/", response_model=schemas.transacciones.Transaccion, tags=["Transacciones"],dependencies=[Depends(Portador())])
 def create_transaccion(transaccion: schemas.transacciones.TransaccionCreate, db: Session = Depends(get_db)):
     db_user = crud.transacciones.get_transaccion_by_id(db, metodo=transaccion.Metodo_Pago)
     if db_user:
