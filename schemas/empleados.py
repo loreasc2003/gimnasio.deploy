@@ -21,4 +21,4 @@ class Empleado(EmpleadoBase):
     #owner_id:int clave foranea
     
     class Config:
-        orm_mode=True
+        orm_mode=True 
