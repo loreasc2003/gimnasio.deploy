@@ -32,7 +32,7 @@ def read_area(id: int, db: Session = Depends(get_db)):
     return db_area
 
 
-@area.post('/areas/', response_model=schemas.areas.Area,tags=['Areas'],dependencies=[Depends(Portador())])
+@area.post('/areas/', response_model=schemas.areas.Area,tags=['Areas'])
 def create_area(area: schemas.areas.AreaCreate, db: Session=Depends(get_db)):
     db_areas = crud.areas.get_area_by_nombre(db,nombre=area.Nombre)
     if db_areas:
