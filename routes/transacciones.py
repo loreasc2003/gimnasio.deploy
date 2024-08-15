@@ -41,8 +41,8 @@ def create_transaccion(transaccion: schemas.transacciones.TransaccionCreate, db:
     return crud.transacciones.create_transacciones(db=db, nom=transaccion)
 
 @transacciones.put("/transaccion/{id}", response_model=schemas.transacciones.Transaccion, tags=["Transacciones"],dependencies=[Depends(Portador())])
-def update_transaccion(id: int, transacciones: schemas.transacciones.TransaccionUpdate, db: Session = Depends(get_db)):
-    db_user = crud.transacciones.update_transacciones(db=db, id=id, transaccion=transacciones)
+def update_transaccion(id: int, persona: schemas.transacciones.TransaccionUpdate, db: Session = Depends(get_db)):
+    db_user = crud.transacciones.update_transacciones(db=db, id=id, person=persona)
     if db_user is None:
         raise HTTPException(status_code=404, detail="Persona no existe, no actualizado")
     return db_user

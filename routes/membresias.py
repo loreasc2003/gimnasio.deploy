@@ -41,8 +41,8 @@ def create_membresia(membresia: schemas.membresias.MembresiaCreate, db: Session 
     return crud.membresias.create_membresias(db=db, nom=membresia)
 
 @membresia.put("/membresia/{id}", response_model=schemas.membresias.Membresia, tags=["Membresias"],dependencies=[Depends(Portador())])
-def update_membresia(id: int, membresia: schemas.membresias.MembresiaUpdate, db: Session = Depends(get_db)):
-    db_user = crud.membresias.update_membresias(db=db, id=id, membre=membresia)
+def update_membresia(id: int, persona: schemas.membresias.MembresiaUpdate, db: Session = Depends(get_db)):
+    db_user = crud.membresias.update_membresias(db=db, id=id, person=persona)
     if db_user is None:
         raise HTTPException(status_code=404, detail="Persona no existe, no actualizado")
     return db_user

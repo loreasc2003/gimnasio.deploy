@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Enum, Float, Integer, Date
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Enum, Float, Integer, Date, BIGINT
 from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlalchemy.orm import relationship
 from config.db import Base
@@ -9,12 +9,7 @@ class MyMetodoPago(str, enum.Enum):
     TarjetaDebito =  "TarjetaDebito"
     TarjetaCredito = "TarjetaCredito"
     
-
-
-
-
-   
-
+ 
 class Transaccion(Base):
     __tablename__ = "tbb_transacciones"
 

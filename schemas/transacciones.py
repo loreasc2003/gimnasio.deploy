@@ -1,7 +1,7 @@
 from typing import List, Union
 from pydantic import BaseModel
 from datetime import datetime, date
-import enum
+
 
 class TransaccionesBase(BaseModel):
     Usuario_ID: int
@@ -23,7 +23,6 @@ class TransaccionUpdate(TransaccionesBase):
 
 class Transaccion(TransaccionesBase):
     ID: int
-    Usuario_ID: int
     #owner_id: int clave foranea
     class Config:
         orm_mode = True

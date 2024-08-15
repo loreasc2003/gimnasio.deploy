@@ -28,10 +28,10 @@ def create_transacciones(db: Session, nom: schemas.transacciones.TransaccionCrea
     db.refresh(db_user)
     return db_user
 
-def update_transacciones(db: Session, id: int, transaccion: schemas.transacciones.TransaccionUpdate):
+def update_transacciones(db: Session, id: int, person: schemas.transacciones.TransaccionUpdate):
     db_user = db.query(models.transacciones.Transaccion).filter(models.transacciones.Transaccion.ID == id).first()
     if db_user:
-        for var, value in vars(transaccion).items():
+        for var, value in vars(person).items():
             setattr(db_user, var, value) if value else None
         db.commit()
         db.refresh(db_user)
