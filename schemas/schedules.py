@@ -9,9 +9,9 @@ class ScheduleBase(BaseModel):
     Fecha_Fin:datetime
     Fecha_Registro:datetime
     Estatus: bool
-    Empleado_ID:str
-    Sucursal_ID:str
-    Servicio_ID:str
+    Empleado:str
+    Sucursal:str
+    Servicio:str
     # Id_persona: int
 
 class ScheduleCreate(ScheduleBase):
