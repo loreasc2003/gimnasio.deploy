@@ -1,7 +1,7 @@
 # gimnasio.deploy
 
 # RENDER LINK
-# https://gimnasio-deploy.onrender.com
+# https://gimnasio-deploy.onrender.com/docs
 
 # No funciona promociones
 ### Personas si funciona
