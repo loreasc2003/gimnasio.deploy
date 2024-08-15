@@ -19,7 +19,7 @@ def get_areas(db:Session, skip: int=0, limit:int=10):
 def create_area(db:Session, area: schemas.areas.AreaCreate):
     db_area = models.areas.Area(Nombre=area.Nombre, 
                                       Descripcion=area.Descripcion, 
-                                      Sucursal_ID=area.Sucursal_ID, 
+                                      Sucursal=area.Sucursal, 
                                       Estatus=area.Estatus,
                                       Fecha_Registro=area.Fecha_Registro,
                                       Fecha_Actualizacion=area.Fecha_Actualizacion)
