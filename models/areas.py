@@ -9,9 +9,9 @@ class Area(Base):
     ID = Column(Integer, primary_key=True, index=True)
     Nombre = Column(String(80))
     Descripcion = Column(String(80))
-    Sucursal_ID = Column(Integer)
+    Sucursal = Column(String(80))
     Estatus = Column(Boolean, default=False)
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)
     # Id_persona = Column(Integer)
-    # intems = relationship("Item", back_populates="owner") Clave foranea
+    # intems = relationship("Item", back_populates="owner") Clave foranea   
