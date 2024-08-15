@@ -29,7 +29,7 @@ def read_empleado(ID: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Empleado not found")
     return db_empleados
 
-@empleado.post("/empleados/", response_model=schemas.empleados.Empleado, tags=["Empleados"])
+@empleado.post("/empleados/", response_model=schemas.empleados.Empleado, tags=["Empleados"],dependencies=[Depends(Portador())])
 def create_empleado(empleado: schemas.empleados.EmpleadoCreate, db: Session = Depends(get_db)):
     db_empleados = crud.empleados.get_empleado_by_Numero(db, Numero_Empleado=empleado.Numero_Empleado)
     if db_empleados:
