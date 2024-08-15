@@ -2,8 +2,6 @@ from typing import List,Union
 from pydantic import BaseModel
 from datetime import datetime
 
-
-
 class PuestoBase(BaseModel):
     Nombre: str
     Descripcion: str

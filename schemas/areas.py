@@ -5,7 +5,7 @@ from datetime import datetime, date
 class AreaBase(BaseModel):
     Nombre:str
     Descripcion:str
-    Sucursal_ID:int
+    Sucursal:str
     Estatus: bool
     Fecha_Registro:datetime
     Fecha_Actualizacion:datetime

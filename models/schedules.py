@@ -1,6 +1,7 @@
 from sqlalchemy import Column,Boolean, Integer, String, DateTime, ForeignKey, Enum
 from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlalchemy.orm import relationship
+
 from config.db import Base
 import enum
 
@@ -13,9 +14,9 @@ class Schedule(Base):
     Fecha_Fin = Column(DateTime)
     Fecha_Registro = Column(DateTime)
     Estatus = Column(Boolean, default=False)
-    Empleado_ID= Column(Integer)
-    Sucursal_ID = Column(Integer)
-    Servicio_ID = Column(Integer)
+    Empleado= Column(String(80))
+    Sucursal = Column(String(80))
+    Servicio = Column(String(80))
 
     # Id_persona = Column(Integer)
     # intems = relationship("Item", back_populates="owner") Clave foranea

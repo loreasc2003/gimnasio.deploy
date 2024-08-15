@@ -32,7 +32,7 @@ def read_schedule(id: int, db: Session = Depends(get_db)):
     return db_schedule
 
 
-@schedule.post('/schedules/', response_model=schemas.schedules.Schedule,tags=['Horarios'],dependencies=[Depends(Portador())])
+@schedule.post('/schedules/', response_model=schemas.schedules.Schedule,tags=['Horarios'])
 def create_schedule(schedule: schemas.schedules.ScheduleCreate, db: Session=Depends(get_db)):
     db_schedules = crud.schedules.get_schedule_by_usuario(db,usuario=schedule.Usuario)
     if db_schedules:
