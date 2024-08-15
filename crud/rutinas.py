@@ -6,10 +6,7 @@ from sqlalchemy.orm import Session
 import models, schemas
 
 def get_rutina(db: Session, id: int):
-    return db.query(models.rutinas.Rutina).filter(models.rutinas.Rutina == id).first()
-
-def get_rutina_by_nombre(db: Session, nombre: str):
-    return db.query(models.rutinas.Rutina).filter(models.rutinas.Rutina.Nombre == nombre).first()
+    return db.query(models.rutinas.Rutina).filter(models.rutinas.Rutina.ID == id).first()
 
 def get_rutinas(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.rutinas.Rutina).offset(skip).limit(limit).all()

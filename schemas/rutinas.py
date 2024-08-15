@@ -22,4 +22,3 @@ class Rutina(RutinasBase):
     Programa_Saludable_ID: int
     class Config:
         orm_mode = True
-        

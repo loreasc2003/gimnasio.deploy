@@ -16,7 +16,6 @@ class Rutina(Base):
     Programa_Saludable_ID = Column(Integer)
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)
-    Tiempo_Aproximado = Column(Time)
-    Estatus = Column(Enum(MyStatus))
+    Tiempo_Aproximado = Column(String(10))
+    Estatus = Column(Enum(MyStatus), default=MyStatus.Actual)
     Resultados_Esperados = Column(Text)
-    
