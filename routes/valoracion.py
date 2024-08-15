@@ -34,11 +34,18 @@ def create_valoracion(valoracion: schemas.valoracion.ValoracionCreate, db: Sessi
     return crud.val_nutricional.create_valoracion(db=db, valoracion=valoracion)
 
 @valoracion.put("/valoracionNutricional/{miembro_id}/{indicador_id}/{pregunta_id}", response_model=schemas.valoracion.Valoracion, tags=["Valoracion-Nutricional"], dependencies=[Depends(Portador())])
-def update_valoracion(miembro_id: int, indicador_id: int, pregunta_id:int, db: Session = Depends(get_db)):
-    db_valoracion = crud.val_nutricional.update_valoracion(db=db, miembro_id=miembro_id, indicador_id=indicador_id, pregunta_id=pregunta_id)
+def update_valoracion(miembro_id: int, indicador_id: int, pregunta_id:int, valnut:schemas.valoracion.ValoracionUpdate, db: Session = Depends(get_db)):
+    db_valoracion = crud.val_nutricional.update_valoracion(db=db, miembro_id=miembro_id, indicador_id=indicador_id, pregunta_id=pregunta_id, valnut=valnut)
     if db_valoracion is None:
         raise HTTPException(status_code=404, detail="Valoración not found")
     return db_valoracion
+
+# @userrol.put("/usersrol/{usuario_id}/{rol_id}", response_model=schemas.usersrols.UserRol, tags=["Usuarios-Roles"], dependencies=[Depends(Portador())])
+# def update_userrol(usuario_id: int, rol_id: int, userrol:schemas.usersrols.UserRolUpdate, db: Session = Depends(get_db)):
+#     db_userrol = crud.usersrols.update_userrol(db=db, usuario_id=usuario_id, rol_id=rol_id, userrol=userrol)
+#     if db_userrol is None:
+#         raise HTTPException(status_code=404, detail="User-Rol not found")
+#     return db_userrol
 
 @valoracion.delete('/valoracionNutricional/{miembro_id}/{indicador_id}/{pregunta_id}', response_model=schemas.valoracion.Valoracion,tags=['Valoracion-Nutricional'], dependencies=[Depends(Portador())])
 def delete_valoracion(miembro_id:int, indicador_id:int, pregunta_id:int, db: Session=Depends(get_db)):

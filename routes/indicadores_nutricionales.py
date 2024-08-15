@@ -33,10 +33,12 @@ def read_indicador_nutricional(id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Indicador nutricional not found")
     return db_indicador_nutricional
 
-@indicador_nutricional.post('/indicadores_nutricionales/', response_model=schemas.indicadores_nutricionales.IndicadorNutricional, tags=['Indicadores Nutricionales'])
-def create_indicador_nutricional(indicador: schemas.indicadores_nutricionales.IndicadorNutricionalCreate, db: Session = Depends(get_db)):
-    db_indicador_nutricional = crud.indicadores_nutricionales.create_indicador_nutricional(db=db, indicador=indicador)
-    return db_indicador_nutricional
+@indicador_nutricional.post('/indicadores_nutricionales/', response_model=schemas.indicadores_nutricionales.IndicadorNutricional,tags=['Indicadores Nutricionales'], dependencies=[Depends(Portador())])
+def create_indicador_nutriconal(indicador: schemas.indicadores_nutricionales.IndicadorNutricionalCreate, db: Session=Depends(get_db)):
+    db_indicador_nutricional = crud.indicador_nutricional.get_indicador_nutricional_by_usuario(db,id=indicador_nutricional.id)
+    if db_indicador_nutricional:
+        raise HTTPException(status_code=400, detail="Indicador Nutricional existente intenta nuevamente")
+    return crud.indicador_nutricional.IndicadorNutricionalCreate(db=db, indicador=indicador)
 
 @indicador_nutricional.put('/indicadores_nutricionales/{id}', response_model=schemas.indicadores_nutricionales.IndicadorNutricional, tags=['Indicadores Nutricionales'], dependencies=[Depends(Portador())])
 def update_indicador_nutricional(id: int, indicador: schemas.indicadores_nutricionales.IndicadorNutricionalUpdate, db: Session = Depends(get_db)):

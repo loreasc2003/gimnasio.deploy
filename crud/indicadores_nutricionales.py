@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 def get_indicador_nutricional_by_id(db: Session, id: int):
     return db.query(models.indicadores_nutricionales.Actividad).filter(models.indicadores_nutricionales.Actividad.ID == id).first()
 
-def get_indicador_nutricional_by_nombre(db: Session, usuario_id: str):
+def get_indicador_nutricional_by_usuario(db: Session, usuario_id: str):
     return db.query(models.indicadores_nutricionales.Actividad).filter(models.indicadores_nutricionales.Actividad.Usuario_Id == usuario_id).first()
 
 def get_indicadores_nutricionales(db: Session, skip: int = 0, limit: int = 10):
