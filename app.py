@@ -16,7 +16,7 @@ from routes.progra_salud import progra_salud
 from routes.instructors import instructor
 from routes.ejercicio import ejercicio
 from routes.evaluacion_serv import evaluaciones_serv_router
-from routes.pedidos import pedido
+from routes.pedidos import pedidos
 from routes.promociones import promocion
 from routes.Pregunta import pregunta_router
 from routes.OpinionCliente import opinion_router
@@ -56,7 +56,7 @@ app.include_router(progra_salud)
 app.include_router(instructor)
 app.include_router(ejercicio)
 app.include_router(evaluaciones_serv_router)
-app.include_router(pedido)
+app.include_router(pedidos)
 app.include_router(promocion)
 app.include_router(pregunta_router)
 app.include_router(opinion_router)

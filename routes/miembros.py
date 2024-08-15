@@ -2,6 +2,7 @@ from fastapi import  Depends,APIRouter, HTTPException
 from sqlalchemy.orm import Session
 from cryptography.fernet import Fernet
 import crud.miembros
+import models.membresias
 import crud.miembros, config.db, schemas.miembros, models.miembros
 from typing import List
 from portadortoken import Portador

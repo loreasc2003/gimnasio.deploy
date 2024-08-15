@@ -1,29 +1,33 @@
-from typing import List, Union
+from typing import List
 from pydantic import BaseModel
-from datetime import datetime, date
 import enum
+from datetime import datetime
+
+# Define los Enum para coincidir con SQLAlchemy
 
 
-class IndicadoresNutricionalesBase(BaseModel):
-    Nombre: str
-    Edad: int
-    Genero: str
+class IndicadorNutricionalBase(BaseModel):
+   
     Altura: float
     Peso: float
     Imc: float
     Porcentaje_grasa: float
-    NivelActividad: str
+    Nivel_actividad: str
+    Fecha_Registro: datetime
+    Fecha_Actualizacion: datetime
+    Usuario_Id : int
 
 
-class IndicadoresNutricionalesCreate(IndicadoresNutricionalesBase):
+class IndicadorNutricionalCreate(IndicadorNutricionalBase):
     pass
 
-class IndicadoresNutricionalesUpdate(IndicadoresNutricionalesBase):
+class IndicadorNutricionalUpdate(IndicadorNutricionalBase):
     pass
 
-class indicador_nutricional(IndicadoresNutricionalesBase):
+class IndicadorNutricional(IndicadorNutricionalBase):
     ID: int
-    #owner_id: int clave foranea
-    class Config:
-        orm_mode = True
+    # Descomentar y ajustar según el caso
+    # owner_id: int  
 
+    class Config:
+        from_attributes = True
