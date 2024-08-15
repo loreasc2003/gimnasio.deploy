@@ -5,7 +5,7 @@ from models.servicios_clientes import MyTipo
 
 
 class Servicio_ClienteBase(BaseModel):
-    Persona_ID: int
+    Persona_ID: str
     Tipo_Servicio:  MyTipo 
     Descripcion: str
     Comentarios: str
