@@ -33,16 +33,18 @@ def create_valoracion(valoracion: schemas.valoracion.ValoracionCreate, db: Sessi
         raise HTTPException(status_code=400, detail="Valoracion existente intenta nuevamente")
     return crud.val_nutricional.create_valoracion(db=db, valoracion=valoracion)
 
+# Ruta para actualizar un usuario-rol
 @valoracion.put("/valoracionNutricional/{miembro_id}/{indicador_id}/{pregunta_id}", response_model=schemas.valoracion.Valoracion, tags=["Valoracion-Nutricional"], dependencies=[Depends(Portador())])
-def update_valoracion(miembro_id: int, indicador_id: int, pregunta_id:int, db: Session = Depends(get_db)):
-    db_valoracion = crud.val_nutricional.update_valoracion(db=db, miembro_id=miembro_id, indicador_id=indicador_id, pregunta_id=pregunta_id)
+def update_valoracion(miembro_id: int, indicador_id: int,pregunta_id:int, valoracion:schemas.valoracion.ValoracionUpdate, db: Session = Depends(get_db)):
+    db_valoracion = crud.val_nutricional.update_valoracion(db=db, miembro_id=miembro_id, indicador_id=indicador_id, pregunta_id=pregunta_id, valoracion=valoracion)
     if db_valoracion is None:
-        raise HTTPException(status_code=404, detail="Valoración not found")
+        raise HTTPException(status_code=404, detail="Val-Nut not found")
     return db_valoracion
 
+# Ruta para eliminar un Rol
 @valoracion.delete('/valoracionNutricional/{miembro_id}/{indicador_id}/{pregunta_id}', response_model=schemas.valoracion.Valoracion,tags=['Valoracion-Nutricional'], dependencies=[Depends(Portador())])
-def delete_valoracion(miembro_id:int, indicador_id:int, pregunta_id:int, db: Session=Depends(get_db)):
-    db_valoracion = crud.val_nutricional.delete_valoracion(db=db, mimebro_id=miembro_id, indicador_id=indicador_id, pregunta_id=pregunta_id )
-    if db_valoracion is None:
-        raise HTTPException(status_code=404, detail="Valoración no existe, no se pudo eliminar ")
-    return db_valoracion
+def delete_rol(miembro_id: int, indicador_id: int, pregunta_id:int, db: Session=Depends(get_db)):
+    db_valoracions = crud.val_nutricional.delete_valoracion(db=db, miembro_id=miembro_id,indicador_id=indicador_id, pregunta_id=pregunta_id )
+    if db_valoracions is None:
+        raise HTTPException(status_code=404, detail="Val-Nut no existe, no se pudo eliminar ")
+    return db_valoracions
