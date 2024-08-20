@@ -33,6 +33,15 @@ def create_valoracion(valoracion: schemas.valoracion.ValoracionCreate, db: Sessi
         raise HTTPException(status_code=400, detail="Valoracion existente intenta nuevamente")
     return crud.val_nutricional.create_valoracion(db=db, valoracion=valoracion)
 
+#@valoracion.get("/valoracionNutricional/{miembro_id}/{indicador_id}/{pregunta_id}", response_model=schemas.valoracion.Valoracion, tags=["Valoracion-Nutricional"], dependencies=[Depends(Portador())])
+#def get_valoracion_by_ids( miembro_id: int, indicador_id: int,pregunta_id:int, db: Session = Depends(get_db)):
+    #db_valoracion = crud.val_nutricional.get_valoracion_by_ids(db=db, miembro_id=miembro_id, indicador_id=indicador_id, pregunta_id=pregunta_id)
+    #if db_valoracion is None:
+        #raise HTTPException(status_code=404, detail="Val-Nut not found")
+    #return db_valoracion
+
+
+
 # Ruta para actualizar un usuario-rol
 @valoracion.put("/valoracionNutricional/{miembro_id}/{indicador_id}/{pregunta_id}", response_model=schemas.valoracion.Valoracion, tags=["Valoracion-Nutricional"], dependencies=[Depends(Portador())])
 def update_valoracion(miembro_id: int, indicador_id: int,pregunta_id:int, valoracion:schemas.valoracion.ValoracionUpdate, db: Session = Depends(get_db)):
