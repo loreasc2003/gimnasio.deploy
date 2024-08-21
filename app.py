@@ -38,12 +38,18 @@ from routes.instalacion import instalacion
 from routes.mantenimiento import mantenimiento
 from routes.p_nutricional import p_nutricional
 from routes.valoracion import valoracion
-
-
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
 # TABLAS SIN RELACIÓN 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # TABLAS CON RELACIÓN 
 app.include_router(user)
