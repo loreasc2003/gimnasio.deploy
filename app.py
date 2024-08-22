@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, File, UploadFile
 # TABLAS SIN RELACIÓN 
 from routes.person import person
 from routes.rol import rol
@@ -43,6 +45,23 @@ from routes.valoracion import valoracion
 
 
 app = FastAPI()
+@app.post("/upload/")
+async def upload_file(file: UploadFile = File(...)):
+    content = await file.read()  # Lee el contenido del archivo
+    return {"filename": file.filename, "content_type": file.content_type}
+
+
+origins = [
+    "http://localhost:5173/",  # Dirección del frontend durante el desarrollo
+    "https://gimnasioutxj2024.netlify.app/",  # Dirección del frontend en producción
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # TABLAS SIN RELACIÓN 
 
 # TABLAS CON RELACIÓN 
