@@ -30,26 +30,23 @@ def read_membresias(skip: int = 0, limit: int = 10, db: Session = Depends(get_db
 def read_membresia(id: int, db: Session = Depends(get_db)):
     db_user= crud.membresias.get_membresia(db=db, id=id)
     if db_user is None:
-        raise HTTPException(status_code=404, detail="Person not found")
+        raise HTTPException(status_code=404, detail="Membresia not found")
     return db_user
 
 @membresia.post("/membresia/", response_model=schemas.membresias.Membresia, tags=["Membresias"],dependencies=[Depends(Portador())])
 def create_membresia(membresia: schemas.membresias.MembresiaCreate, db: Session = Depends(get_db)):
-    db_user = crud.membresias.get_membresia_by_id(db, codigo=membresia.Codigo)
-    if db_user:
-        raise HTTPException(status_code=400, detail="Persona existente intenta nuevamente")
     return crud.membresias.create_membresias(db=db, nom=membresia)
 
 @membresia.put("/membresia/{id}", response_model=schemas.membresias.Membresia, tags=["Membresias"],dependencies=[Depends(Portador())])
 def update_membresia(id: int, persona: schemas.membresias.MembresiaUpdate, db: Session = Depends(get_db)):
     db_user = crud.membresias.update_membresias(db=db, id=id, person=persona)
     if db_user is None:
-        raise HTTPException(status_code=404, detail="Persona no existe, no actualizado")
+        raise HTTPException(status_code=404, detail="Membresia no existe, no actualizado")
     return db_user
 
 @membresia.delete("/membresia/{id}", response_model=schemas.membresias.Membresia, tags=["Membresias"],dependencies=[Depends(Portador())])
 def delete_membresia(id: int, db: Session = Depends(get_db)):
     db_user = crud.membresias.delete_membresias(db=db, id=id)
     if db_user is None:
-        raise HTTPException(status_code=404, detail="Persona no existe, no se pudo eliminar")
+        raise HTTPException(status_code=404, detail="Membresia no existe, no se pudo eliminar")
     return db_user
