@@ -11,7 +11,7 @@ class MyTipo(enum.Enum):
 class Pedido(Base):
     __tablename__ = 'tbb_pedidos'
     ID = Column(Integer, primary_key=True, index=True)
-    #Producto_id = Column(Integer, ForeignKey("tbb_productos.ID"), nullable=False)
+    Producto_id = Column(Integer, ForeignKey("tbb_productos.ID"), nullable=False)
     #Usuario_id = Column(Integer, ForeignKey("tbb_usuarios.ID"), nullable=False)
     Tipo = Column(Enum(MyTipo), nullable=False)
     Fecha_Registro = Column(DateTime, default=func.now(), nullable=False)

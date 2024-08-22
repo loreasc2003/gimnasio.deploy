@@ -6,6 +6,7 @@ import enum
 
 
 class PedidoBase(BaseModel):
+    Producto_id: int
     Tipo: str
     Fecha_Registro: datetime
     Fecha_Actualizacion: datetime

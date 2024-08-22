@@ -14,6 +14,7 @@ def get_pedidos(db: Session, skip: int = 0, limit: int = 10):
 # Crear un nuevo pedido
 def create_pedido(db: Session, pedido: schemas.pedidos.PedidoCreate):
     db_pedido = models.pedidos.Pedido(
+        Producto_id=pedido.Producto_id,
         Tipo=pedido.Tipo,
         Fecha_Registro=pedido.Fecha_Registro,
         Fecha_Actualizacion=pedido.Fecha_Actualizacion,
