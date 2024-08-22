@@ -11,7 +11,7 @@ models.p_nutricionales.Base.metadata.create_all(bind=config.db.engine)
 
 def get_db():
     db = config.db.SessionLocal()
-    try:
+    try: 
         yield db
     finally:
         db.close()
@@ -29,7 +29,7 @@ def read_p_nutricional(id: int, db: Session = Depends(get_db)):
 
 @p_nutricional.post('/p_nutricionales/', response_model=schemas.p_nutricionales.p_nutricional, tags=['Preguntas Nutricionales'])
 def create_p_nutricionales(p_nutricional: schemas.p_nutricionales.p_nutricionalesCreate, db: Session = Depends(get_db)):
-    db_p_nutricional = crud.p_nutricionales.get_p_nutricional_by_nombre(db, tipo_respuesta=p_nutricional.Tipo_Respuesta)
+    db_p_nutricional = crud.p_nutricionales.get_p_nutricional_by_nombre(db, Pregunta=p_nutricional.Pregunta)
     if db_p_nutricional:
         raise HTTPException(status_code=400, detail="Pregunta existente, intenta nuevamente")
     return crud.p_nutricionales.p_nutricionalesCreate(db=db, p_nutricionales=p_nutricional)

@@ -7,8 +7,8 @@ def get_p_nutricional(db: Session, id: int):
     return db.query(models.p_nutricionales.p_nutricionales).filter(models.p_nutricionales.p_nutricionales.ID == id).first()
 
 # Busqueda por nombre
-def get_p_nutricional_by_nombre(db: Session, tipo_respuesta: str):
-    return db.query(models.p_nutricionales.p_nutricionales).filter(models.p_nutricionales.p_nutricionales.Tipo_Respuesta == tipo_respuesta).first()
+def get_p_nutricional_by_nombre(db: Session, Pregunta: str):
+    return db.query(models.p_nutricionales.p_nutricionales).filter(models.p_nutricionales.p_nutricionales.Pregunta == Pregunta).first()
 
 # Buscar todos las personas
 def get_p_nutricionales(db: Session, skip: int = 0, limit: int = 10):
@@ -18,12 +18,8 @@ def get_p_nutricionales(db: Session, skip: int = 0, limit: int = 10):
 def p_nutricionalesCreate(db: Session, p_nutricionales: schemas.p_nutricionales.p_nutricionalesCreate):
     db_p_nutricionales = models.p_nutricionales.p_nutricionales(
         Pregunta=p_nutricionales.Pregunta,
-        Tipo_Respuesta=p_nutricionales.Tipo_Respuesta,
-        Descripcion=p_nutricionales.Descripcion,
         Fecha_Creacion=p_nutricionales.Fecha_Creacion,
-        Fecha_Actualizacion=p_nutricionales.Fecha_Actualizacion,
-        Estatus=p_nutricionales.Estatus,
-        Opciones_Respuesta=p_nutricionales.Opciones_Respuesta
+        Fecha_Actualizacion=p_nutricionales.Fecha_Actualizacion
     )
     
     db.add(db_p_nutricionales)

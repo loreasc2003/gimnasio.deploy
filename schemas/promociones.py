@@ -3,6 +3,7 @@ from pydantic  import BaseModel
 from datetime import datetime, date
 
 class PromocionBase(BaseModel):
+    Producto_id:int
     Tipo: str
     Aplicacion_en: str
     Estatus: bool
