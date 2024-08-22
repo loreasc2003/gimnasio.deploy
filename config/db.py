@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 #SQLALCHEMY_DATABASE_URL = "mysql+pymysql://avnadmin:AVNS_TUUjXCnZQAQk-kZ2VKZ@mysql-270c42e9-lorenaascencion2003-2691.d.aivencloud.com:10171/defaultdb"
 
 #SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:1234@3306/gimnasio"
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:1234@127.0.0.1:3306/gimnasio"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:1234@localhost:3307/gimnasio"
 
 
 

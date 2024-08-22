@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 class OpinionClienteBase(BaseModel):
+    Persona_Id:int
     descripcion: str
     tipo: Optional[str] = None
     respuesta: Optional[str] = None
