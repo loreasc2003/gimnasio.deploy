@@ -4,7 +4,6 @@ from datetime import datetime, date
 import enum
 
 class MembresiaBase(BaseModel):
-    ID: str
     Codigo: str
     Tipo: str
     Tipo_Servicios: str
