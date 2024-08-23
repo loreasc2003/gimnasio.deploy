@@ -1,23 +1,8 @@
-from sqlalchemy import Column, Integer, String, Enum, DateTime, Integer
-from sqlalchemy.orm import relationship
-from config.db import Base
-import enum
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime
 
-# Definir los enumeradores si es necesario (ajustar según el caso de uso)
-class Gender(str, enum.Enum):
-    Masculino = "Masculino"
-    Femenino = "Femenino"
-    Otro = "Otro"
-
-class BloodType(str, enum.Enum):
-    AP = "A+"
-    AN = "A-"
-    BP = "B+"
-    BN = "B-"
-    ABP = "AB+"
-    ABN = "AB-"
-    OP = "O+"
-    ON = "O-"
+Base = declarative_base()
 
 class Instructor(Base):
     __tablename__ = "tbb_instructors"
@@ -27,8 +12,10 @@ class Instructor(Base):
     email = Column(String(100), unique=True, index=True)
     specialty = Column(String(100))
     years_of_experience = Column(Integer)
-    # Puedes agregar más campos si es necesario
+    total_clients_attended = Column(Integer, default=0, nullable=False)
+    status = Column(Boolean, default=True, nullable=False)
+    registration_date = Column(DateTime, default=datetime.utcnow, nullable=False)
+    update_date = Column(DateTime, nullable=True)
+    rating = Column(Integer, default=0)
 
-    # Si es necesario, se puede agregar relaciones aquí
-
-    # Otros campos que necesites
+    # Puedes agregar relaciones si es necesario

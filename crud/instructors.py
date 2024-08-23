@@ -17,7 +17,12 @@ def create_instructor(db: Session, instructor: schemas.instructors.InstructorCre
         name=instructor.name,
         email=instructor.email,
         specialty=instructor.specialty,
-        years_of_experience=instructor.years_of_experience
+        years_of_experience=instructor.years_of_experience,
+        total_clients_attended=instructor.total_clients_attended,
+        status=instructor.status,
+        registration_date=instructor.registration_date,
+        update_date=instructor.update_date,
+        rating=instructor.rating
     )
     db.add(db_instructor)
     db.commit()

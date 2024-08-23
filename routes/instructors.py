@@ -1,16 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from cryptography.fernet import Fernet
 import crud.instructors as crud
 import config.db
 import schemas.instructors as schemas
 import models.instructors as models
 from typing import List
-
-# Generar y usar una clave de encriptación (ajustar según sea necesario)
-key = Fernet.generate_key()
-f = Fernet(key)
-
 instructor = APIRouter()
 
 # Crear las tablas si no existen
