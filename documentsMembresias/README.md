@@ -12,7 +12,7 @@
 &nbsp;
 |  Logo de sitio web  |
 | :------------: | 
-|  bulls logo.png | | 
+|<img src=https://github.com/loreasc2003/gimnasio.deploy/documentsMembresias/bulls%20logo.png>  | | 
 
 &nbsp;
 
