@@ -12,9 +12,9 @@ class Instructor(Base):
     email = Column(String(100), unique=True, index=True)
     specialty = Column(String(100))
     years_of_experience = Column(Integer)
-    total_clients_attended = Column(Integer, default=0, nullable=False)
+    total_clients_attended = Column(Integer, default=0)
     status = Column(Boolean, default=True, nullable=False)
-    registration_date = Column(DateTime, default=datetime.utcnow, nullable=False)
+    registration_date = Column(DateTime)
     update_date = Column(DateTime, nullable=True)
     rating = Column(Integer, default=0)
 
