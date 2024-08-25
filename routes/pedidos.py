@@ -33,7 +33,7 @@ def read_pedido(id: int, db: Session = Depends(get_db)):
     return db_pedido
 
 # Ruta para crear un pedido
-@pedidos.post('/pedidos/', response_model=schemas.pedidos.Pedido, tags=['Pedidos'])
+@pedidos.post('/pedidos/', response_model=schemas.pedidos.Pedido, tags=['Pedidos'],dependencies=[Depends(Portador())])
 def create_pedido(pedido: schemas.pedidos.PedidoCreate, db: Session = Depends(get_db)):
     return crud.pedidos.create_pedido(db=db, pedido=pedido)
 
