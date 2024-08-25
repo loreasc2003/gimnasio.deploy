@@ -8,7 +8,8 @@ from typing import List
 instructor = APIRouter()
 
 # Crear las tablas si no existen
-models.Instructor._table_.create(bind=config.db.engine, checkfirst=True)
+
+models.Instructor.__table__.create(bind=config.db.engine, checkfirst=True)
 
 def get_db():
     db = config.db.SessionLocal()
