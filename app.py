@@ -19,7 +19,7 @@ from routes.evaluacion_serv import evaluaciones_serv_router
 from routes.pedidos import pedidos
 from routes.promociones import promocion_router
 from routes.Pregunta import pregunta_router
-from routes.OpinionCliente import opinion_router
+from routes.opinion_cliente import opinion_cliente_router
 from routes.productos import producto
 from routes.membresias import membresia
 from routes.miembros import miembros
@@ -65,7 +65,7 @@ app.include_router(evaluaciones_serv_router)
 app.include_router(pedidos)
 app.include_router(promocion_router)
 app.include_router(pregunta_router)
-app.include_router(opinion_router)
+app.include_router(opinion_cliente_router)
 app.include_router(producto)
 app.include_router(membresia)
 app.include_router(miembros)
