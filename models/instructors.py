@@ -7,7 +7,7 @@ Base = declarative_base()
 class Instructor(Base):
     __tablename__ = "tbb_instructors"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)  
     name = Column(String(80))
     email = Column(String(100), unique=True, index=True)
     specialty = Column(String(100))
