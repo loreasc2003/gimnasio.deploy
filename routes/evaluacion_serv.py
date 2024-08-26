@@ -16,7 +16,7 @@ def get_db():
 
 # Ruta para obtener todas las evaluaciones
 @evaluaciones_serv_router.get('/evaluaciones_serv/', response_model=List[schemas.evaluaciones_serv.Evaluaciones_serv], tags=['Evaluaciones'], dependencies=[Depends(Portador())])
-def read_evaluaciones(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_evaluaciones(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
     db_evaluaciones = crud.evaluaciones_serv.get_evaluaciones(db=db, skip=skip, limit=limit)
     return db_evaluaciones
 

@@ -19,7 +19,7 @@ def get_db():
         db.close()
 
 @opinion_cliente_router.get('/opiniones_clientes/', response_model=List[schemas.opinion_cliente.OpinionCliente], tags=['OpinionesCliente'], dependencies=[Depends(Portador())])
-def read_opinion_clientes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_opinion_clientes(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
     return crud.opinion_cliente.get_opinion_clientes(db=db, skip=skip, limit=limit)
 
 @opinion_cliente_router.get('/opinion_cliente/{id}', response_model=schemas.opinion_cliente.OpinionCliente, tags=['OpinionesCliente'], dependencies=[Depends(Portador())])

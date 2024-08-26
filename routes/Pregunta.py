@@ -22,7 +22,7 @@ def get_db():
 
 # Ruta para obtener todas las preguntas
 @pregunta_router.get('/preguntas/', response_model=List[schemas.Pregunta.Pregunta], tags=['Preguntas'], dependencies=[Depends(Portador())])
-def read_preguntas(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_preguntas(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
     db_preguntas = crud.Pregunta.get_preguntas(db=db, skip=skip, limit=limit)
     return db_preguntas
 

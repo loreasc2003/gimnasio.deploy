@@ -21,7 +21,7 @@ def get_db():
 
 # Ruta para obtener todos los productos
 @producto.get('/productos/', response_model=List[schemas.productos.Producto],tags=['productos'], dependencies=[Depends(Portador())])
-def read_productos(skip: int=0, limit: int=10, db: Session=Depends(get_db)):
+def read_productos(skip: int=0, limit: int=1000, db: Session=Depends(get_db)):
     db_productos = crud.productos.get_productos(db=db,skip=skip, limit=limit)
     return db_productos
 

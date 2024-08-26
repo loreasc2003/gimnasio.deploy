@@ -20,7 +20,7 @@ def get_db():
 
 # Ruta para obtener todos los pedidos
 @pedidos.get('/pedidos/', response_model=List[schemas.pedidos.Pedido], tags=['Pedidos'],dependencies=[Depends(Portador())])
-def read_pedidos(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_pedidos(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
     db_pedidos = crud.pedidos.get_pedidos(db=db, skip=skip, limit=limit)
     return db_pedidos
 

@@ -15,7 +15,7 @@ def get_db():
         db.close()
 
 @promocion_router.get('/promociones/', response_model=List[schemas.promociones.Promocion], tags=['Promociones'], dependencies=[Depends(Portador())])
-def read_promocions(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_promocions(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
     db_promocions = crud.promociones.get_promocions(db=db, skip=skip, limit=limit)
     return db_promocions
 
