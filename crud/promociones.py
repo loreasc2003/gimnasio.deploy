@@ -16,7 +16,7 @@ def create_promocion(db: Session, promocion: schemas.promociones.PromocionCreate
     db_promocion = models.promociones.Promocion(
         Producto_id=promocion.Producto_id,
         Tipo=promocion.Tipo,
-                
+        Aplicacion_en=promocion.Aplicacion_en, 
         Fecha_Registro=promocion.Fecha_Registro,
         Fecha_Actualizacion=promocion.Fecha_Actualizacion,
         Estatus=promocion.Estatus
