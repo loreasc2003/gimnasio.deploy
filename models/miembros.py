@@ -13,7 +13,7 @@ class MyTipo(str, enum.Enum):
     Visita = "Visita"
 
 class Miembro(Base):
-    _tablename_ = "tbb_miembros"
+    __tablename__ = "tbb_miembros"
 
     ID= Column(Integer, primary_key=True, index=True)
     # Membresia_ID = Column(Integer, ForeignKey("tbc_membresias.ID"))

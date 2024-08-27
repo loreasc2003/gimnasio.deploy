@@ -11,7 +11,7 @@ class MyMetodoPago(str, enum.Enum):
     
  
 class Transaccion(Base):
-    _tablename_ = "tbb_transacciones"
+    __tablename__ = "tbb_transacciones"
 
     ID= Column(Integer, primary_key=True, index=True)
     # Usuario_ID = Column(Integer, ForeignKey("tbb_usuarios.ID"))
