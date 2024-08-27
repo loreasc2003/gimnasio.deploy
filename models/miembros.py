@@ -1,9 +1,9 @@
+
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Enum
 from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlalchemy.orm import relationship
 from config.db import Base
 import enum
-
 
 class MyTipo(str, enum.Enum):
     Frecuente = "Frecuente"
@@ -12,15 +12,12 @@ class MyTipo(str, enum.Enum):
     Esporadico = "Esporadico"
     Visita = "Visita"
 
-
-
-
-   
-
 class Miembro(Base):
-    __tablename__ = "tbb_miembros"
+    _tablename_ = "tbb_miembros"
 
     ID= Column(Integer, primary_key=True, index=True)
+    # Membresia_ID = Column(Integer, ForeignKey("tbc_membresias.ID"))
+    # Usuario_ID = Column(Integer, ForeignKey("tbb_usuarios.ID"))
     Membresia_ID = Column(Integer)
     Usuario_ID = Column(Integer)
     Tipo = Column( Enum(MyTipo)) 
@@ -28,6 +25,6 @@ class Miembro(Base):
     Antiguedad = Column(String(80))
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)
-    #items = relationship("Item", back_populates="owner") Clave Foranea
 
-
+    # membresia = relationship("Membresia")
+    # usuario = relationship("User")

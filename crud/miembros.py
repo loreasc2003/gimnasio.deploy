@@ -2,6 +2,8 @@ import models.miembros
 import schemas.miembros
 from sqlalchemy.orm import Session
 import models, schemas
+from datetime import datetime
+from sqlalchemy import func, extract, desc
 
 def get_miembro(db: Session, id: int):
     return db.query(models.miembros.Miembro).filter(models.miembros.Miembro.ID == id).first()
@@ -10,7 +12,23 @@ def get_miembro_by_id(db: Session, tipo: str):
     return db.query(models.miembros.Miembro).filter(models.miembros.Miembro.Tipo == tipo).first()
 
 def get_miembros(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(models.miembros.Miembro).offset(skip).limit(limit).all()
+    return db.query(models.miembros.Miembro).order_by(desc(models.miembros.Miembro.ID)).offset(skip).limit(limit).all()
+
+def get_miembros_count(db: Session):
+    current_year = datetime.now().year
+    
+    result = db.query(
+        extract('month', models.miembros.Miembro.Fecha_Registro).label('month'),
+        func.count(models.miembros.Miembro.Fecha_Registro).label('count')
+    ).filter(
+        extract('year', models.miembros.Miembro.Fecha_Registro) == current_year
+    ).group_by(
+        extract('month', models.miembros.Miembro.Fecha_Registro)
+    ).all()
+
+    result_dict = {month: count for month, count in result}
+    
+    return result_dict
 
 def create_miembros(db: Session, nom: schemas.miembros.MiembroCreate):
     db_user = models.miembros.Miembro(
