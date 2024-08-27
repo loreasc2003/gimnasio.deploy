@@ -6,9 +6,6 @@ from datetime import datetime, date
 class TransaccionesBase(BaseModel):
     Usuario_ID: int
     Metodo_Pago: str
-    Numero_Tarjeta : str
-    CVC : int 
-    Fecha_Expiracion : date
     Monto: float
     Estatus: bool
     Fecha_Registro : datetime
@@ -26,5 +23,3 @@ class Transaccion(TransaccionesBase):
     #owner_id: int clave foranea
     class Config:
         orm_mode = True
-
-

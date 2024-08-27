@@ -10,7 +10,6 @@ class MembresiaBase(BaseModel):
     Tipo_Plan: str
     Nivel: str
     Fecha_Inicio: datetime
-    Fecha_Fin: datetime
     Estatus: bool
     Fecha_Registro : datetime
     Fecha_Actualizacion: datetime
@@ -27,5 +26,3 @@ class Membresia(MembresiaBase):
     #owner_id: int clave foranea
     class Config:
         orm_mode = True
-
-
