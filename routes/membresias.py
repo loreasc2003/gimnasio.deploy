@@ -5,7 +5,7 @@ import crud.membresias
 import crud.membresias, config.db, schemas.membresias, models.membresias
 from typing import List
 from portadortoken import Portador
-
+from typing import Dict
 
 key=Fernet.generate_key()
 f = Fernet(key)
@@ -23,8 +23,13 @@ def get_db():
 
 @membresia.get("/membresias/", response_model=List[schemas.membresias.Membresia], tags=["Membresias"],dependencies=[Depends(Portador())] )
 def read_membresias(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    db_users= crud.membresias.get_membresias(db=db, skip=skip, limit=limit)
+    db_users = crud.membresias.get_membresias(db=db, skip=skip, limit=limit)
     return db_users
+
+@membresia.get("/tipo_membresias/", response_model=Dict[str, int], tags=["Membresias"], dependencies=[Depends(Portador())])
+def read_membresias_by_type(db: Session = Depends(get_db)):
+    db_membresias = crud.membresias.get_membresias_count_by_type(db=db)
+    return db_membresias
 
 @membresia.post("/membresia/{id}", response_model=schemas.membresias.Membresia, tags=["Membresias"],dependencies=[Depends(Portador())])
 def read_membresia(id: int, db: Session = Depends(get_db)):

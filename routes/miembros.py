@@ -6,7 +6,7 @@ import models.membresias
 import crud.miembros, config.db, schemas.miembros, models.miembros
 from typing import List
 from portadortoken import Portador
-
+from typing import Dict
 
 key=Fernet.generate_key()
 f = Fernet(key)
@@ -26,6 +26,11 @@ def get_db():
 def read_miembros(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     db_users= crud.miembros.get_miembros(db=db, skip=skip, limit=limit)
     return db_users
+
+@miembros.get("/miembros_count/", response_model=Dict[str, int], tags=["Miembros"], dependencies=[Depends(Portador())])
+def read_miembros_count(db: Session = Depends(get_db)):
+    db_miembros = crud.miembros.get_miembros_count(db=db)
+    return db_miembros
 
 @miembros.post("/miembro/{id}", response_model=schemas.miembros.Miembro, tags=["Miembros"],dependencies=[Depends(Portador())])
 def read_miembro(id: int, db: Session = Depends(get_db)):
